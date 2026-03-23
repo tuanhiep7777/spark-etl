@@ -4,13 +4,20 @@ FROM apache/superset:latest
 # Set environment variables, including a secure SECRET_KEY
 ENV SUPERSET_SECRET_KEY='your_generated_secret_key_here'
 ENV SUPERSET_HOME=/app/superset
+ENV SUPERSET_CONFIG_PATH=/app/superset_config.py
 ENV PYTHONPATH="${PYTHONPATH}:${SUPERSET_HOME}"
 
 # Copy the Superset config file into the container
 COPY superset_config.py /app/superset_config.py
 
+USER root
+RUN mkdir -p /app/superset && chown -R superset:superset /app/superset
+USER superset
+
 RUN USER_NAME=$(whoami) && echo "Current user is: $USER_NAME"
 
+# upgrade db first (creates the SQLite database)
+RUN superset db upgrade
 # create admin user
 RUN superset fab create-admin \
   --username admin \
@@ -18,8 +25,6 @@ RUN superset fab create-admin \
   --lastname User \
   --email admin@admin.com \
   --password admin
-# upgrade db
-RUN superset db upgrade
 # init superset
 RUN superset init
 

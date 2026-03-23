@@ -1,4 +1,4 @@
-FROM bitnami/spark:latest
+FROM --platform=linux/amd64 public.ecr.aws/bitnami/spark:latest
 
 USER root
 # set current work dir

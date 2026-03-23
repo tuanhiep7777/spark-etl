@@ -18,6 +18,7 @@ chmod:
 	docker exec --user root scheduler chmod 755 /opt/airflow/dependencies.zip
 	docker exec --user root scheduler chmod -R 755 /opt/airflow/config
 	docker exec --user root scheduler chmod -R 755 /opt/airflow/dbt_clickhouse
+	docker exec --user root scheduler mkdir -p /opt/airflow/dbt_clickhouse/logs /opt/airflow/dbt_clickhouse/target
 	docker exec --user root scheduler chmod -R 777 /opt/airflow/dbt_clickhouse/logs
 	docker exec --user root scheduler chmod -R 777 /opt/airflow/dbt_clickhouse/target
 
