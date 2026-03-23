@@ -1,6 +1,6 @@
 import json
 from pyspark.sql import SparkSession
-from common.constant import VAULT_ADDR, VAULT_TOKEN, GMAIL_USER, GMAIL_PASSWORD, SEND_EMAIL
+from common.constant import VAULT_ADDR, VAULT_TOKEN, GMAIL_USER, GMAIL_PASSWORD, SEND_EMAIL, SMTP_HOST, SMTP_PORT
 import requests
 import smtplib
 from email.mime.multipart import MIMEMultipart
@@ -69,11 +69,11 @@ def _run_great_expectation(file_name, spark_df):
     return validation_results
                 
 def _send_gmail(subject, body, to_email):
-    # Gmail SMTP server configuration
-    smtp_server = "smtp.gmail.com"
-    smtp_port = 587  # Port for TLS
+    # SMTP server configuration (supports both MailHog and Gmail)
+    smtp_server = SMTP_HOST
+    smtp_port = SMTP_PORT
     from_email = GMAIL_USER
-    password = GMAIL_PASSWORD  # Use App Password if 2FA is enabled
+    password = GMAIL_PASSWORD
 
     # Create the email
     msg = MIMEMultipart()
@@ -87,8 +87,10 @@ def _send_gmail(subject, body, to_email):
     try:
         # Establish a connection to the server
         server = smtplib.SMTP(smtp_server, smtp_port)
-        server.starttls()  # Upgrade to a secure connection
-        server.login(from_email, password)
+        # Only use TLS and auth when a password is configured (e.g. Gmail)
+        if password:
+            server.starttls()
+            server.login(from_email, password)
 
         # Send the email
         server.sendmail(from_email, to_email, msg.as_string())

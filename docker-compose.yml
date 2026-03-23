@@ -253,6 +253,16 @@ services:
       - mynetwork
     depends_on:
       - vault
+
+  mailhog:
+    image: mailhog/mailhog
+    container_name: mailhog
+    ports:
+      - "1025:1025"   # SMTP server
+      - "8025:8025"   # Web UI to view captured emails
+    networks:
+      - mynetwork
+
 volumes:
   mongo_data:
   mysql-data:
