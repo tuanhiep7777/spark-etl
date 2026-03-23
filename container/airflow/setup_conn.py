@@ -1,6 +1,5 @@
 import subprocess
 import os
-from airflow.models import Variable
 
 def add_airflow_connection():
     connection_id = "spark-default"
@@ -26,9 +25,20 @@ def add_airflow_connection():
     else:
         print(f"Failed to add {connection_id} connection: {result.stderr}")
 
-def add_send_emmail_variable():
+def add_send_email_variable():
     send_email_to = os.getenv("SEND_EMAIL_TO")
-    Variable.set("email_to",send_email_to)
+    cmd = [
+        "airflow",
+        "variables",
+        "set",
+        "email_to",
+        send_email_to,
+    ]
+    result = subprocess.run(cmd, capture_output=True, text=True)
+    if result.returncode == 0:
+        print(f"Successfully set email_to variable to {send_email_to}")
+    else:
+        print(f"Failed to set email_to variable: {result.stderr}")
 
 add_airflow_connection()
-add_send_emmail_variable()
+add_send_email_variable()

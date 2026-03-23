@@ -21,7 +21,7 @@ dag = DAG(
     'clickhouse_spark_dag',
     default_args=default_args,
     description='A PySpark job DAG with combined dependencies',
-    schedule_interval='@daily',
+    schedule='@daily',
     catchup=False,
 )
 
