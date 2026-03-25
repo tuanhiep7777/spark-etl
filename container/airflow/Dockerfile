@@ -1,5 +1,5 @@
 FROM apache/airflow:3.0.6-python3.12
-COPY requirements.txt /
+COPY --chmod=644 requirements.txt /requirements.txt
 RUN pip install --no-cache-dir -r /requirements.txt
 
 RUN USER_NAME=$(whoami) && echo "Current user is: $USER_NAME"

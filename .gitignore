@@ -1,0 +1,2 @@
+# Bind-mount airflow logs
+container/airflow/logs/

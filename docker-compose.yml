@@ -51,6 +51,11 @@ services:
 
   airflow-webserver:
     <<: *airflow-common
+    depends_on:
+      postgres:
+        condition: service_healthy
+      airflow-init:
+        condition: service_completed_successfully
     container_name: webserver
     command: api-server
     ports:
@@ -66,6 +71,11 @@ services:
 
   airflow-scheduler:
     <<: *airflow-common
+    depends_on:
+      postgres:
+        condition: service_healthy
+      airflow-init:
+        condition: service_completed_successfully
     container_name: scheduler
     command: scheduler
     networks:
@@ -79,6 +89,11 @@ services:
 
   airflow-dag-processor:
     <<: *airflow-common
+    depends_on:
+      postgres:
+        condition: service_healthy
+      airflow-init:
+        condition: service_completed_successfully
     container_name: dag-processor
     command: dag-processor
     networks:
@@ -87,6 +102,11 @@ services:
 
   airflow-triggerer:
     <<: *airflow-common
+    depends_on:
+      postgres:
+        condition: service_healthy
+      airflow-init:
+        condition: service_completed_successfully
     container_name: triggerer
     command: triggerer
     networks:
