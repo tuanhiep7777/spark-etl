@@ -1,9 +1,8 @@
-apache-airflow==3.0.6
 black==24.4.2
 flake8==7.0.0
 python-dotenv==0.21.0
-pymongo
+pymongo==4.16.0
 apache-airflow-providers-apache-spark==4.8.1
 great_expectations==0.18.17
-dbt-core
-dbt-clickhouse
+dbt-core==1.11.7
+dbt-clickhouse==1.10.0

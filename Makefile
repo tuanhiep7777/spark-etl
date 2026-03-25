@@ -35,4 +35,4 @@ dashboard:
 
 down: 
 	docker compose down -v
-	docker images | grep spark-etl | awk '{print $3}' | xargs docker rmi -f
+	docker images | grep spark-etl | awk '{print $$3}' | xargs docker rmi -f

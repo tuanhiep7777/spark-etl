@@ -1,5 +1,5 @@
 # Use the official Apache Superset image
-FROM apache/superset:latest
+FROM apache/superset:4.1.1
 
 # Set environment variables, including a secure SECRET_KEY
 ENV SUPERSET_SECRET_KEY='your_generated_secret_key_here'

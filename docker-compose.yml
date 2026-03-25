@@ -125,7 +125,7 @@ services:
       _AIRFLOW_WWW_USER_PASSWORD: ${_AIRFLOW_WWW_USER_PASSWORD:-airflow}
     command: [ "python", "/opt/airflow/setup_conn.py" ]
   clickhouse:
-    image: clickhouse/clickhouse-server
+    image: clickhouse/clickhouse-server:26.2.5
     user: '101:101'
     container_name: clickhouse
     hostname: clickhouse
@@ -193,7 +193,7 @@ services:
     command: [ "/opt/bitnami/spark/sbin/start-worker.sh", "spark://spark-master:7077" ]
 
   minio:
-    image: quay.io/minio/minio
+    image: quay.io/minio/minio:RELEASE.2025-09-07T16-13-09Z
     container_name: minio
     hostname: minio
     command: server --address 0.0.0.0:10000 --console-address 0.0.0.0:10001 /data
@@ -206,7 +206,7 @@ services:
     networks:
       - mynetwork
   createbuckets:
-    image: minio/mc
+    image: minio/mc:RELEASE.2025-08-13T08-35-41Z
     depends_on:
       - minio
     entrypoint: >
@@ -215,7 +215,7 @@ services:
       - mynetwork
 
   mongodb:
-    image: mongo:latest
+    image: mongo:8.2.6
     container_name: mongodb
     ports:
       - "27017:27017"
@@ -236,7 +236,7 @@ services:
       - mongodb
 
   mysql:
-    image: mysql:latest
+    image: mysql:9.6.0
     container_name: mysql
     environment:
       MYSQL_ROOT_PASSWORD: 123456
@@ -272,7 +272,7 @@ services:
       - vault
 
   mailhog:
-    image: mailhog/mailhog
+    image: mailhog/mailhog:v1.0.1
     container_name: mailhog
     ports:
       - "1025:1025" # SMTP server

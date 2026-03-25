@@ -1,5 +1,5 @@
 # Use a base image with necessary tools
-FROM alpine:latest
+FROM alpine:3.21
 
 # Install required packages (curl and unzip)
 RUN apk add --no-cache curl unzip

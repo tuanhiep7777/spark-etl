@@ -1,9 +1,9 @@
 pyspark
 requests
 python-dotenv==0.21.0
-pymongo
-dbt-core==1.8.6
-dbt-clickhouse==1.8.3
+pymongo==4.16.0
+dbt-core==1.11.7
+dbt-clickhouse==1.10.0
 great_expectations==0.18.17
-apache-airflow-client==2.9.0
+apache-airflow-client
 apache-airflow-providers-apache-spark==4.8.1
