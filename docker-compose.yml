@@ -133,7 +133,7 @@ services:
     environment:
       - CLICKHOUSE_USER=admin # Set your custom username
       - CLICKHOUSE_PASSWORD=admin # Set your custom password
-    volumes:
+      # volumes:
       # - ./container/clickhouse/fs/volumes/clickhouse/etc/clickhouse-server/config.d/config.xml:/etc/clickhouse-server/config.d/config.xml
       # - ./container/clickhouse/fs/volumes/clickhouse/etc/clickhouse-server/users.d/users.xml:/etc/clickhouse-server/users.d/users.xml
       # - ./container/clickhouse/fs/volumes/clickhouse/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
