@@ -8,7 +8,7 @@ ENV SUPERSET_CONFIG_PATH=/app/superset_config.py
 ENV PYTHONPATH="${PYTHONPATH}:${SUPERSET_HOME}"
 
 # Copy the Superset config file into the container
-COPY superset_config.py /app/superset_config.py
+COPY --chmod=644 superset_config.py /app/superset_config.py
 
 USER root
 RUN mkdir -p /app/superset && chown -R superset:superset /app/superset
