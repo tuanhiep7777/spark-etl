@@ -1,2 +1,5 @@
 # Bind-mount airflow logs
 container/airflow/logs/
+
+# Airflow pycache
+container/airflow/dags/__pycache__/
