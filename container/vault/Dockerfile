@@ -21,7 +21,7 @@ RUN vault --version
 WORKDIR /usr/src/app
 
 # Copy the shell script into the container
-COPY script.sh /script.sh
+COPY --chmod=644 script.sh /script.sh
 
 # Make sure the script is executable
 RUN chmod +x /script.sh

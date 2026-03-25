@@ -36,11 +36,11 @@ RUN pip install clickhouse-sqlalchemy sqlalchemy==1.4.47
 
 USER $USER_NAME
 # Copy the ClickHouse connection init_script into the container
-COPY init_script.sh /app/init_script.sh
+COPY --chmod=644 init_script.sh /app/init_script.sh
 # copy change mode execution
 RUN chmod +x /app/init_script.sh
 # copy dashboard
-COPY dashboard/  /app/dashboard/
+COPY --chmod=644 dashboard/  /app/dashboard/
 # Expose the default port for Superset
 EXPOSE 8088
 

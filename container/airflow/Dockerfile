@@ -4,7 +4,7 @@ RUN pip install --no-cache-dir -r /requirements.txt
 
 RUN USER_NAME=$(whoami) && echo "Current user is: $USER_NAME"
 
-COPY setup_conn.py $AIRFLOW_HOME
+COPY --chmod=644 setup_conn.py $AIRFLOW_HOME
 
 USER root
 RUN mkdir -p /opt/jars && \

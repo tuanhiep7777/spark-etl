@@ -5,7 +5,7 @@ FROM python:3.9-slim
 WORKDIR /app
 
 # Copy the Python script into the container
-COPY generate_data.py /generate_data.py
+COPY --chmod=644 generate_data.py /generate_data.py
 
 # change mode
 RUN chmod +x /generate_data.py
